@@ -1,104 +1,99 @@
-# 15 --> 6 --> 8
-
 class Node():
+    def __init__(self, value):
+        self.data = value
+        self.next = None
 
-  def __init__(self,data):
-    self.data = data
-    self.next = None
-    
+
 class LinkedList():
 
-  def __init__(self):
-    self.head = None
-    self.tail = None
-  
-  def append(self,data):
-    new_node = Node(data)
-    if self.head == None:
-      self.head = new_node
-      self.tail = self.head
-      self.length = 1
-    else:
-      self.tail.next = new_node
-      self.tail = new_node 
-      self.length += 1
+    def __init__(self):
+        self.head = None
+        self.tail = None
 
-  def prepend(self,data):
-    new_node = Node(data)
-    new_node.next = self.head 
-    self.head = new_node
-    
+    def append(self, value):
+        new = Node(value)
+        if self.head == None:
+            self.head = new
+            self.tail = self.head
+            self.length = 1
+        else:
+            # this will update the head.next chain before replacing tail
+            self.tail.next = new
+            self.tail = new
+            self.length += 1
 
-    self.length += 1
+    def prepend(self, value):
+        new = Node(value)
+        new.next = self.head
+        self.head = new
+        self.length = + 1
 
-  def insert(self,index,data):
-    new_node = Node(data)
-    i = 0
-    temp = self.head
-    if index>=self.length:
-      self.append(data)
-      return 
-    if index ==0:
-      self.prepend(data)
-      return
-    while i<self.length:
-      if i == index-1:
-        temp.next , new_node.next = new_node , temp.next
-        self.length+=1
-        break
-      temp = temp.next
-      i+=1
-    
+    def insert(self, index, value):
+        new = Node(value)
+        aux = self.head
+        if index >= self.length:
+            self.append(value)
+            return
+        if index == 0:
+            self.prepend(value)
+            return
+        for i in range(0, self.length):
+            if i == index - 1:
+                # Multiple assignment in Python: https://stackoverflow.com/questions/8725673/multiple-assignment-and-evaluation-order-in-python
+                # Right-hand side is always evaluated fully before doing the actual setting of variables.
+                aux.next, new.next = new, aux.next
+                self.length += 1
+                break
+            aux = aux.next
 
-  def remove(self,index):
-    temp = self.head
-    i=0
-    if index>self.length:
-      print("Entered wrong index")
-      
-    while i<self.length:
-      if index == 0:
-        self.head = temp.next
-        self.length -= 1   
-        break       
-      if i == self.length-1:
-        temp.next = None
-        self.tail = temp
-        self.length -= 1
-        break 
-      if i == index-1:
-        temp.next = temp.next.next
-        self.length-=1
-        break
-      i+=1
-      temp = temp.next
-    
-  def printl(self):
-    temp = self.head
-    while temp != None:
-      print(temp.data , end = ' ')
-      temp = temp.next
-    print()
-    print('Length = '+str(self.length))
+    def remove(self, index):
+        aux = self.head
+        if index > self.length:
+            print('Wrong index.')
+        if index == 0:
+            self.head = aux.next
+            self.length -= 1
+            return
+        for i in range(0, self.length):
+            if i == self.length - 1:
+                aux.next = None
+                self.tail = aux
+                self.length -= 1
+                break
+            if i == index - 1:
+                aux.next = aux.next.next
+                self.length -= 1
+                break
+            aux = aux.next
 
-  def reverse(self):
-    prev = None
-    self.tail = self.head 
-    while self.head != None:
-      temp = self.head
-      self.head = self.head.next
-      temp.next = prev
-      prev = temp  
-    self.head = temp
-    
+
+    def printl(self):
+        print('Head: { value = ' + str(self.head.data) +
+              ', next = ' + str(self.head.next)+'}')
+        print('Tail: { value = ' + str(self.tail.data) +
+              ', next = ' + str(self.tail.next)+'}')
+        print('Length: ' + str(self.length))
+
+    def printarray(self):
+        temp = self.head
+        while temp != None:
+            print(temp.data, end=' ')
+            temp = temp.next
+        print()
+        print('Length = '+str(self.length))
+
 
 l = LinkedList()
 l.append(10)
-l.append(5)
-l.append(6)
-l.prepend(1)
-l.insert(2,99)
-l.insert(34,23)
-#l.remove(4)
-l.reverse()
 l.printl()
+l.append(5)
+l.printl()
+l.append(6)
+l.printl()
+l.printarray()
+l.insert(2, 20)
+l.printarray()
+l.remove(2)
+l.printarray()
+l.remove(0)
+l.printarray()

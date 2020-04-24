@@ -1,8 +1,19 @@
-# datastructures_algorithms
+# Interview preparation :computer: (under construction)
 
-This repository includes basic data structures and algorithms implemented with Python. It is intended to reflect on my technical interview preparation.
+This repository aims to include all preparation material needed for the technical part of job interviews in junior software developers positions.
+At the moment you can find:
+* Basic data structures implementations
+* Basic algorithm implementations
+* Solutions to real exercises proposed by companies during job interviews
 
-## Disclaimer
+## Coming soon
+* Computer science concepts flashcards
+* Data structures concepts flashcards
+* Algorithms concepts flashcards
+* Python concepts flashcards
+* Java concepts flashcards
+* JavaScript concepts flashcards
 
-The vast majority of problems and implementations are originally solved by me.
-However, in the instances where I have taken code from other people, I have tried to credit them all but since I did not start this with the intention of sharing it, I may have forgotten it on occasion. If you find something without credit, I would appreciate it if you let me know. Thank you in advance.
+## Acknowledgments
+
+Hat tip to anyone whose code was used, I tried to credit all of you!

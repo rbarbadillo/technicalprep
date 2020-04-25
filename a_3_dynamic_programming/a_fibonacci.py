@@ -52,3 +52,12 @@ print(x)
 
 # Time complexity: O(n)
 # Space complexity: storing cache makes it worse than the recursive only approach
+
+
+# (3) Bottom up approach
+# No recursion
+def fibonacciMaster2(n):
+    answer = [0, 1]
+    for i in range(2, n + 1):
+        answer.append(answer[i-2], answer[i-1])
+    return answer.pop()

@@ -9,18 +9,18 @@ class LinkedList():
     def __init__(self):
         self.head = None
         self.tail = None
+        self.length = 0
 
     def append(self, value):
         new = Node(value)
         if self.head == None:
             self.head = new
             self.tail = self.head
-            self.length = 1
         else:
             # this will update the head.next chain before replacing tail
             self.tail.next = new
             self.tail = new
-            self.length += 1
+        self.length += 1
 
     def prepend(self, value):
         new = Node(value)
